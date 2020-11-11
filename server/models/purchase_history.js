@@ -1,27 +1,49 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+const publisher = require("./publisher");
+
 module.exports = (sequelize, DataTypes) => {
-  class Purchase_history extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
+  const Book = sequelize.define('Purchase_history', {
+    id: {
+      type: Sequelize.INTEGER
+    },
+    NoOfBooksPurchased: {
+      type: DataTypes.INTEGER,
+      allowNull: {
+        args: false,
+        
+      }
+    },
+    price: {
+      type: DataTypes.INTEGER,
+      allowNull: {
+        args: false,
+     
+      }
+    },
+    purchaseDate: {
+      type: DataTypes.STRING,
+      allowNull: {
+        args: false,
+        
+      }
+    },
+   
+    bookId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Book',
+        key: 'id',
+        as: 'bookId',
+      }
     }
+  
+   
+  }, {});
+  Purchase_history.associate = (models) => {
+    // associations can be defined here
+    Purchase_history.belongsTo(Book);
+    Purchase_history.belongsTo(Publisher);
+
+
   };
-  Purchase_history.init({
-    purchaserId: DataTypes.INTEGER,
-    NoOfBooksPurchased: DataTypes.INTEGER,
-    price: DataTypes.INTEGER,
-    purchaseDate: DataTypes.DATE,
-    bookId: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'Purchase_history',
-  });
   return Purchase_history;
 };

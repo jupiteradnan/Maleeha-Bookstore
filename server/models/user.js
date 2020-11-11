@@ -1,28 +1,57 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
+  const User = sequelize.define('User', {
+    id: {
+      type: Sequelize.INTEGER
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: {
+        args: false,
+        msg: 'Please enter your name'
+      }
+    },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: {
+        args: false,
+        msg: 'Please enter your username'
+      }
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: {
+        args: false,
+        msg: 'Please enter your email address'
+      },
+      unique: {
+        args: true,
+        msg: 'Email already exists'
+      },
+      validate: {
+        isEmail: {
+          args: true,
+          msg: 'Please enter a valid email address'
+        },
+      },
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: {
+        args: false,
+        msg: 'Please enter a password'
+      },
+      validate: {
+        isNotShort: (value) => {
+          if (value.length < 5) {
+            throw new Error('Password should be at least 5 characters');
+          }
+        },
+      },
     }
+  }, {});
+  User.associate = (models) => {
+    // associations can be defined here
+    User.hasMany(Book);
   };
-  User.init({
-    userId: DataTypes.INTEGER,
-    name: DataTypes.STRING,
-    username: DataTypes.STRING,
-    password: DataTypes.STRING,
-    email: DataTypes.STRING,
-    address: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'User',
-  });
   return User;
 };
