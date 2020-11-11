@@ -6,6 +6,9 @@ module.exports = (sequelize, DataTypes) => {
     {
       id: {
         type: Sequelize.INTEGER,
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true
       },
       NoOfBooksPurchased: {
         type: DataTypes.INTEGER,
@@ -31,8 +34,8 @@ module.exports = (sequelize, DataTypes) => {
   );
   Publisher_history.associate = (models) => {
     // associations can be defined here
-    Publisher_history.belongsTo(Publisher);
-    Publisher_history.belongsTo(Book);
+    Publisher_history.belongsTo(models.Publisher, {foreignKey: "publisher_id"});
+    Publisher_history.belongsTo(models.Book, {foreignKey: "book_id"});
   };
   return Publisher_history;
 };

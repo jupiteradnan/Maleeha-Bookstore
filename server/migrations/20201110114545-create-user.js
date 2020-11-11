@@ -6,43 +6,41 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER
       },
-      userId: {
-        type: Sequelize.INTEGER,
-      },
+
       name: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       username: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       password: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       email: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       address: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATE
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATE
       },
       userId: {
         type: Types.INTEGER,
         field: "user_id",
         references: {
           model: "user",
-          key: "id",
+          key: "id"
         },
         onUpdate: "CASCADE",
-        onDelete: "SET NULL",
+        onDelete: "SET NULL"
       },
     });
   },

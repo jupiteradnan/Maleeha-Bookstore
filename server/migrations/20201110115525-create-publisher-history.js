@@ -8,9 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      publisherId: {
-        type: Sequelize.INTEGER
-      },
+      
       bookId: {
         type: Sequelize.INTEGER
       },
@@ -27,7 +25,8 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-      }
+      },
+      
     });
   },
   down: async (queryInterface, Sequelize) => {

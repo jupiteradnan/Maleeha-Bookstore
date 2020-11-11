@@ -8,9 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      bookId: {
-        type: Sequelize.INTEGER
-      },
+      
       title: {
         type: Sequelize.STRING
       },
@@ -33,7 +31,18 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-      }
+      },
+
+      bookId: {
+        type: Types.INTEGER,
+        field: "book_id",
+        references: {
+          model: "book",
+          key: "id",
+        },
+        onUpdate: "CASCADE",
+        onDelete: "SET NULL",
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {

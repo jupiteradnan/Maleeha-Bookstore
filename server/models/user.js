@@ -1,36 +1,42 @@
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('User', {
+
+  const User = sequelize.define('user', {
+    
     id: {
-      type: Sequelize.INTEGER
+       type: Sequelize.INTEGER,
+       allowNull: false,
+       autoIncrement: true,
+        primaryKey: true
+        
     },
     name: {
       type: DataTypes.STRING,
       allowNull: {
         args: false,
-        msg: 'Please enter your name'
+        
       }
     },
     username: {
       type: DataTypes.STRING,
       allowNull: {
         args: false,
-        msg: 'Please enter your username'
+       
       }
     },
     email: {
       type: DataTypes.STRING,
       allowNull: {
         args: false,
-        msg: 'Please enter your email address'
+        
       },
       unique: {
         args: true,
-        msg: 'Email already exists'
+        
       },
       validate: {
         isEmail: {
           args: true,
-          msg: 'Please enter a valid email address'
+          
         },
       },
     },
@@ -38,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: {
         args: false,
-        msg: 'Please enter a password'
+        
       },
       validate: {
         isNotShort: (value) => {
@@ -49,9 +55,10 @@ module.exports = (sequelize, DataTypes) => {
       },
     }
   }, {});
+  
   User.associate = (models) => {
     // associations can be defined here
-    User.hasMany(Book);
+    User.hasMany(models.Book, {foreignKey: "user_id"});
   };
   return User;
 };

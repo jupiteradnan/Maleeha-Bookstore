@@ -27,7 +27,18 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-      }
+      },
+
+      shopId: {
+        type: Types.INTEGER,
+        field: "shop_id",
+        references: {
+          model: "bookshop",
+          key: "id",
+        },
+        onUpdate: "CASCADE",
+        onDelete: "SET NULL",
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {

@@ -1,4 +1,5 @@
 module.exports = (sequelize, Types) => {
+  
   const book_bookshop = sequelize.define(
     "book_bookshop",
     {},

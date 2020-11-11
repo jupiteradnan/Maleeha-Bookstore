@@ -23,6 +23,7 @@ module.exports = (sequelize, Types) => {
   );
 
   addon_translation.associate = function (models) {
+    
     addon_translation.belongsTo(models.addon, { foreignKey: "addon_id" });
   };
   return addon_translation;

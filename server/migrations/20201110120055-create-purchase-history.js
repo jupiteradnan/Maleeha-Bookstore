@@ -30,7 +30,18 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-      }
+      },
+
+      purchaseId: {
+        type: Types.INTEGER,
+        field: "purchase_id",
+        references: {
+          model: "purchase_history",
+          key: "id",
+        },
+        onUpdate: "CASCADE",
+        onDelete: "SET NULL",
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {

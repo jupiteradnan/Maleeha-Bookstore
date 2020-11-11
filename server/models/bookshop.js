@@ -4,40 +4,34 @@ module.exports = (sequelize, DataTypes) => {
     {
       id: {
         type: Sequelize.INTEGER,
+       allowNull: false,
+       autoIncrement: true,
+        primaryKey: true
       },
       name: {
         type: DataTypes.STRING,
         allowNull: {
-          args: false,
+          args: false
         },
       },
       address: {
         type: DataTypes.STRING,
         allowNull: {
-          args: false,
+          args: false
         },
       },
       phone: {
         type: DataTypes.STRING,
         allowNull: {
-          args: false,
+          args: false
         },
-      },
-
-      bookId: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: "Book",
-          key: "id",
-          as: "bookId",
-        },
-      },
+      }
     },
     {}
   );
   Bookshop.associate = (models) => {
     // associations can be defined here
-    Bookshop.hasMany(Book);
+    Bookshop.hasMany(models.Book, {foreignKey: "shop_id"});
   };
   return Bookshop;
 };
