@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     "purchase_history",
     {
       id: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true
@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       purchaseDate: {
-        type: DataTypes.STRING,
+        type: DataTypes.DATE,
         allowNull: {
           args: false,
         },
@@ -35,8 +35,8 @@ module.exports = (sequelize, DataTypes) => {
 
   Purchase_history.associate = (models) => {
     // associations can be defined here
-    Purchase_history.belongsTo(models.Book, {foreignKey: "book_id"});
-    Purchase_history.belongsTo(models.Publisher, {foreignKey: "publisher_id"});
+    Purchase_history.belongsTo(models.book, {foreignKey: "book_id"});
+    Purchase_history.belongsTo(models.publisher, {foreignKey: "publisher_id"});
   };
   return Purchase_history;
 };

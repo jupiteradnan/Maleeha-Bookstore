@@ -2,7 +2,7 @@
 
 const fs = require("fs");
 const path = require("path");
-const Sequelize = require("sequelize");
+const { Sequelize, DataTypes } = require("sequelize");
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/../config/config.json")[env];
@@ -31,14 +31,14 @@ if (config.use_env_variable) {
   );
 }
 
-db.book = book;
-db.user = user;
-db.publisher = publisher;
-db.publisher_history = publisher_history;
-db.purchase_history = purchase_history;
-db.bookshop = bookshop;
-db.book_bookshop = book_bookshop;
-db.publisher_publisher_history = publisher_publisher_history;
+db.book  = book( sequelize, DataTypes) ;
+db.user = user( sequelize, DataTypes);
+db.publisher = publisher( sequelize, DataTypes);
+db.publisher_history = publisher_history( sequelize, DataTypes);
+db.purchase_history = purchase_history( sequelize, DataTypes);
+db.bookshop = bookshop( sequelize, DataTypes);
+db.book_bookshop = book_bookshop( sequelize, DataTypes);
+db.publisher_publisher_history = publisher_publisher_history( sequelize, DataTypes);
 
 
 

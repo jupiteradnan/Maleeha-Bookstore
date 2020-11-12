@@ -1,12 +1,10 @@
-const bookshop = require("./bookshop");
-const book_bookshop = require("./book_bookshop");
 
 module.exports = (sequelize, DataTypes) => {
   const Book = sequelize.define(
     "book",
     {
       id: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true
@@ -49,8 +47,8 @@ module.exports = (sequelize, DataTypes) => {
   );
     Book.associate = (models) => {
     // associations can be defined here
-    Book.belongsTo(models.User, {foreignKey: "user_id"});
-    Book.belongsToMany(models.Bookshop,{through: book_bookshop});
+    Book.belongsTo(models.user, {foreignKey: "user_id"});
+    Book.belongsToMany(models.bookshop,{through: "book_bookshop"});
     
   };
 

@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       id: {
         
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true
@@ -46,9 +46,8 @@ module.exports = (sequelize, DataTypes) => {
   );
   Publisher.associate = (models) => {
     // associations can be defined here
-    Publisher.hasMany(models.Book,{foreignKey: "publisher_id"});
-   // publisher_history.hasMany(models.publisher_history);
-    Publisher.belongsToMany(models.publisher_history,{through: publisher_publisher_history});
+    Publisher.hasMany(models.book,{foreignKey: "publisher_id"});
+    Publisher.belongsToMany(models.publisher_history,{through: "publisher_publisher_history"});
   };
   return Publisher;
 };

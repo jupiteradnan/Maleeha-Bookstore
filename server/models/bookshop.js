@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     "bookshop",
     {
       id: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
        allowNull: false,
        autoIncrement: true,
         primaryKey: true
@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
   );
   Bookshop.associate = (models) => {
     // associations can be defined here
-    Bookshop.hasMany(models.Book, {foreignKey: "shop_id"});
+    Bookshop.hasMany(models.book, {foreignKey: "shop_id"});
   };
   return Bookshop;
 };

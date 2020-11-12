@@ -33,7 +33,7 @@ module.exports = {
       },
 
       purchaseId: {
-        type: Types.INTEGER,
+        type: Sequelize.INTEGER,
         field: "purchase_id",
         references: {
           model: "purchase_history",

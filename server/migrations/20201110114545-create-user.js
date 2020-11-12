@@ -33,7 +33,7 @@ module.exports = {
         type: Sequelize.DATE
       },
       userId: {
-        type: Types.INTEGER,
+        type: Sequelize.INTEGER,
         field: "user_id",
         references: {
           model: "user",

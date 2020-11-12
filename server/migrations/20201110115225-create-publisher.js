@@ -32,7 +32,7 @@ module.exports = {
         type: Sequelize.DATE
       },
       publisherId: {
-        type: Types.INTEGER,
+        type: Sequelize.INTEGER,
         field: "publisher_id",
         references: {
           model: "publisher",
