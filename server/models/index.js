@@ -6,6 +6,7 @@ const { Sequelize, DataTypes } = require("sequelize");
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/../config/config.json")[env];
+
 let db = {};
 
 // all models needs to be imported here
@@ -38,8 +39,7 @@ db.publisher_history = publisher_history( sequelize, DataTypes);
 db.purchase_history = purchase_history( sequelize, DataTypes);
 db.bookshop = bookshop( sequelize, DataTypes);
 db.book_bookshop = book_bookshop( sequelize, DataTypes);
-db.publisher_publisher_history = publisher_publisher_history( sequelize, DataTypes);
-
+db.publisher_publisher_history = publisher_publisher_history( sequelize, DataTypes); 
 
 
 Object.keys(db).forEach((modelName) => {
