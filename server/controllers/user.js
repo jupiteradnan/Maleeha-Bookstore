@@ -2,16 +2,14 @@ const { user, book } = require('../models');
 
 
 const createUser = async (req, res) => {
-  // console.log(req.body);
+   console.log(req.body);
  // req.body, req.header, req.query, req.params
  try{ const createdUser = await user.findOne(req.body, { raw: true, include: { model: book } });
   console.log(createdUser);
   res.json({ success: true, message: 'finally api is working', data: createdUser });
 }
-catch(err)
-{
+catch(err){}
 
-}
 };
 
 const deleteUser = async (req, res) =>{
