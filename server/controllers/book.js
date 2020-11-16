@@ -1,29 +1,66 @@
-/*
-const models = require('../models/book');
-const { Book } = models;
+
+const { user, book } = require('../models');
 
 
- class Books {
+const createBook = async (req, res) => {
+  const createdBook = await book.findOne(req.body, { raw: true, include: { model: user } });
+  console.log(createdBook);
+  res.json({ success: true, message: 'Book has been added successfully', data: createdBook });
+};
 
-  static createBook(req, res) {
-   const { id, title, author, category, price, pages } = req.body
+const deleteBook = async (req, res) =>{
+  
+    const id = req.params.id;
+    const success = await user.destroy({
+      where: { id: id }
+    })
 
-          Book.create({ 
-          id,
-          title,
-          author,
-          category,
-          pages
-        })
-        
-        .then(book => res.status(201).send({
-          success: true,
-          message: 'Book successfully created',
-          book
-        }))
-    }
+     if(!success){
+      return res.status(200).send({
+      status: 404,
+      message: 'No data found'
+      });
+      }
+
+      res.status(200).send({
+      status: 200,
+      message: 'Book has been deleted successfully!'
+      });
 }
 
-module.exports = Users
 
-*/
+
+/*
+const findBook = async (req, res) => {
+  console.log(req.body);
+ const createdBook = await book.(req.body, { raw: true, include: { model: user } });
+ console.log(createdBook);
+ res.json({ success: true, message: 'Book has been added successfully', data: createdBook });
+}; */
+
+ const getBookDetails = async (req, res) =>{
+ const bookDetails = await book.findAll();
+   if(!bookDetails){
+     return res.status(200).send({
+     status: 404,
+     message: 'No data found'
+});
+}
+   res.status(200).send({
+     status: 200,
+     message: 'Data found!',
+     data: bookDetails
+});
+
+}
+
+
+const bookController = {
+
+  createBook,
+  deleteBook,
+  getBookDetails
+};
+
+module.exports = bookController; 
+

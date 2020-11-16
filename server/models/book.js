@@ -3,12 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const Book = sequelize.define(
     "book",
     {
-      id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true
-      },
+      
       title: {
         type: DataTypes.STRING,
         allowNull: {
