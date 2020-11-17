@@ -3,12 +3,20 @@ const { user, book } = require('../models');
 const createUser = async (req, res) => {
    
  // req.body, req.header, req.query, req.params
-  const createdUser = await user.findOne(req.body, { raw: true, include: { model: book } });
-  //console.log(createdUser);
-  res.json({ success: true, message: 'User created successfully', data: createdUser });
-};
+  try {//const createdUser = await user.findOne(req.body, { raw: true, include: { model: book } });
+    //const createdUser = await user.findOne({where: {name: "Mike"}} );
+    //const id = req.params.id;
+    //const createdUser = await user.findOne({where: {id: id}} );
+    const createdUser = await user.findOne(req.body);
+    console.log(createdUser);
+    res.json({ success: true, message: 'User created successfully', data: createdUser }); 
+}
+catch(err){
+}
 
+}; 
 
+//////////////////////////////////////////////////////////////////////////
 const deleteUser = async (req, res) =>{
   
     const id = req.params.id;
@@ -57,14 +65,14 @@ try{
             
           }
   })
-}catch{}
+}catch(err){}
  
 };
 
 
 
 const userController = {
-  createUser, 
+  createUser,
   deleteUser,
   getUserDetails,
   login

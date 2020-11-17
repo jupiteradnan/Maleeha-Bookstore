@@ -1,17 +1,20 @@
 
 const { user, book } = require('../models');
 
-
 const createBook = async (req, res) => {
-  const createdBook = await book.findOne(req.body, { raw: true, include: { model: user } });
+  try{const createdBook = await book.findOne( req.body, { raw: true, include: { model: user } });
   console.log(createdBook);
   res.json({ success: true, message: 'Book has been added successfully', data: createdBook });
+}
+catch(err){
+
+}
 };
 
 const deleteBook = async (req, res) =>{
   
     const id = req.params.id;
-    const success = await user.destroy({
+    const success = await book.destroy({
       where: { id: id }
     })
 
@@ -27,16 +30,6 @@ const deleteBook = async (req, res) =>{
       message: 'Book has been deleted successfully!'
       });
 }
-
-
-
-/*
-const findBook = async (req, res) => {
-  console.log(req.body);
- const createdBook = await book.(req.body, { raw: true, include: { model: user } });
- console.log(createdBook);
- res.json({ success: true, message: 'Book has been added successfully', data: createdBook });
-}; */
 
  const getBookDetails = async (req, res) =>{
  const bookDetails = await book.findAll();

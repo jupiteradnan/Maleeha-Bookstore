@@ -46,6 +46,7 @@ const runMigrations = async () => {
          })
          .catch((error) => console.log('error', error));
       await umzug.up();
+      //await umzug.down({ to: 0 });
       console.log('run all migrations successfully');
    } catch (error) {
       console.log(error);
