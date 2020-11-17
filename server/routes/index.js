@@ -10,7 +10,7 @@
      // User APIs
      app.post('/api/register', user.createUser); 
      app.get('/api/login', user.login);
-     app.delete('/api/deleteUser/:id', user.deleteUser);
+     app.delete('/api/delete/:id', user.deleteUser);
      app.get('/api/getUser', user.getUserDetails);
      
       // Book APIs
@@ -21,7 +21,7 @@
       // Publisher APIs
      app.post('/api/publisher', publisher.createPublisher);
      app.delete('/api/deletePublisher/:id', publisher.deletePublisher);
-     app.get('/api/getUser', publisher.getPublisherDetails);
+     app.get('/api/getPublisher', publisher.getPublisherDetails);
 
      // Publisher history APIs
      app.post('/api/publisherHistory', publisher_history.createPublisher_history);

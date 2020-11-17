@@ -1,37 +1,24 @@
-const { user, book } = require('../models');
 const model = require('../models');
 
 const createUser = async (req, res) => {
-   
- // req.body, req.header, req.query, req.params
-  try {//const createdUser = await user.findOne(req.body, { raw: true, include: { model: book } });
-    //const createdUser = await user.findOne({where: {name: "Mike"}} );
-    //const id = req.params.id;
-    //const createdUser = await user.findOne({where: {id: id}} );
-    let user = {
-      name: 'test USer',
-      username: 'fdddff',
-      password: 'fdfdffdfd',
-      email: 'fdfdf@fddfd',
-      address: 'test address'
-    }
+// req.body, req.header, req.query, req.params
+  try{
+    let user = req.body;
     const createdUser = await model.user.create(user);
     console.log(createdUser)
-    // console.log(createdUser);
-    res.json({ success: true, message: 'User created successfully' }); 
+    res.json({ success: true, message: 'User created successfully', data:user }); 
 }
-catch(err){
+  catch(err){
   throw err;
 }
-
 }; 
 
-//////////////////////////////////////////////////////////////////////////
+
 const deleteUser = async (req, res) =>{
   
-    const id = req.params.id;
-    const success = await user.destroy({
-      where: { id: id }
+  const id = req.params.id;
+  const success = await model.user.destroy({
+  where: { id: id }
     })
 
   if(!success){
@@ -47,16 +34,16 @@ const deleteUser = async (req, res) =>{
 }
 
 
-
 const getUserDetails = async (req, res) =>{
-  const userDetails = await book.findAll();
+  let userDetails = await model.user.findAll();
     if(!userDetails){
       return res.status(200).send({
       status: 404,
       message: 'No data found'
  });
- }
-    res.status(200).send({
+ 
+  }
+      return res.status(200).send({
       status: 200,
       message: 'Data found!',
       data: userDetails
@@ -66,16 +53,33 @@ const getUserDetails = async (req, res) =>{
 
 const login = async (req, res) => {
 try{
-  const { email, password } = req.params;
-  user.findAll({
+  
+  let email = req.params.email;
+  let password = req.params.password;
+  let user = model.user.findAll({
       
     where:{
         email: email,
         password: password
-            
           }
   })
-}catch(err){}
+
+  if(!user){
+    return res.status(200).send({
+    status: 404,
+    message: 'Cannot login!'
+});
+}
+
+   res.status(200).send({
+   status: 200,
+   message: 'User logged in successfully!',
+   data: getUserDetails()
+});
+
+} catch(err){
+  throw err;
+}
  
 };
 
