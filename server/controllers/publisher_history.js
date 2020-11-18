@@ -1,17 +1,24 @@
-const { publisher_history } = require('../models');
+const model = require('../models');
+
 
 
 const createPublisher_history = async (req, res) => {
-   
-  const createdPublisher_history = await publisher_history.findOne(req.body, { raw: true, include: { model: book } });
-  res.json({ success: true, message: 'Publisher history created successfully', data: createdPublisher_history });
+  try{
+    let publisher_history = req.body;
+    const createdPublisher_history = await model.publisher_history.create(publisher_history);
+    console.log(createdPublisher_history);
+    res.json({ success: true, message: 'Publisher history created successfully', data:publisher_history }); 
+}
+  catch(err){
+  throw err;
+}
 };
 
 
 const deletePublisher_history = async (req, res) =>{
   
     const id = req.params.id;
-    const success = await publisher_history.destroy({
+    const success = await model.publisher_history.destroy({
       where: { id: id }
     })
 
@@ -27,28 +34,52 @@ const deletePublisher_history = async (req, res) =>{
 });
 }
 
-
-
 const getPublisher_history = async (req, res) =>{
-  const publisher_historyDetails = await publisher_history.findAll();
+  try{ let publisher_historyDetails = await model.publisher_history.findAll();
     if(!publisher_historyDetails){
       return res.status(200).send({
       status: 404,
       message: 'No data found'
  });
  }
-    res.status(200).send({
+    else {res.status(200).send({
       status: 200,
       message: 'Data found!',
-      data: publisher_historyDetails
+      data: publisher_historyDetails  });
+    }
+} catch(err){
+  throw err;
+}
+ }
+
+ const getPublishHistoryByBookId = async (req, res) =>
+ {
+    const bookId = req.params.id;
+    const publish_history = await model.publisher_history.findAll({
+     // where: { bookId: bookId }
+      where: { bookId: 1 }
+    })
+
+    console.log("output:"+publish_history);
+    if(!publish_history){
+      return res.status(200).send({
+      status: 404,
+      message: 'No data found'
  });
- 
+ }
+    else {
+      res.status(200).send({
+      status: 200,
+      message: 'Data found!',
+        });
+    }
  }
 
 const publisher_historyController = {
   createPublisher_history, 
   deletePublisher_history,
-  getPublisher_history
+  getPublisher_history,
+  getPublishHistoryByBookId
   
 };
 

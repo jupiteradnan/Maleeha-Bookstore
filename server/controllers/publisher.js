@@ -1,17 +1,22 @@
-const { book } = require('../models');
-const {publisher} = require('../models');
+const model = require('../models');
 
 const createPublisher = async (req, res) => {
-   
-  const createdPublisher = await publisher.findOne(req.body, { raw: true, include: { model: book } });
-  res.json({ success: true, message: 'Publisher created successfully', data: createdPublisher });
+  try{
+    let publisher = req.body;
+    const createdPublisher = await model.publisher.create(publisher);
+    console.log(createdPublisher);
+    res.json({ success: true, message: 'Publisher created successfully', data:publisher }); 
+}
+  catch(err){
+  throw err;
+}
 };
 
 
 const deletePublisher = async (req, res) =>{
   
     const id = req.params.id;
-    const success = await publisher.destroy({
+    const success = await model.publisher.destroy({
       where: { id: id }
     })
 
@@ -21,16 +26,17 @@ const deletePublisher = async (req, res) =>{
      message: 'No data found'
 });
 }
-  res.status(200).send({
+  else {return res.status(200).send({
      status: 200,
-     message: 'Publisher has been deleted successfully!'
-});
+     message: 'Publisher has been deleted successfully!'});
+  }
+
 }
 
 
 
 const getPublisherDetails = async (req, res) =>{
-  const publisherDetails = await publisher.findAll();
+  let publisherDetails = await model.publisher.findAll();
     if(!publisherDetails){
       return res.status(200).send({
       status: 404,

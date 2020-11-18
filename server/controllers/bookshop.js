@@ -3,7 +3,7 @@ const model = require('../models');
 const createBookshop = async (req, res) => {
   try{
     let bookshop = req.body;
-    const createdBookshop = await model.bookshop.create(user);
+    const createdBookshop = await model.bookshop.create(bookshop);
     console.log(createdBookshop)
     res.json({ success: true, message: 'Book created successfully', data:bookshop }); 
 }
@@ -25,10 +25,10 @@ const deleteBookshop = async (req, res) =>{
      message: 'No data found'
 });
 }
-  res.status(200).send({
+  else {res.status(200).send({
      status: 200,
-     message: 'Bookshop has been deleted successfully!'
-});
+     message: 'Bookshop has been deleted successfully!'  });
+  }             
 }
     
    const getBookshopDetails = async (req, res) =>{

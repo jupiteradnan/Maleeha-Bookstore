@@ -1,17 +1,22 @@
-const { purchase_history, book } = require('../models');
-
+const model = require('../models');
 
 const createPurchase_history = async (req, res) => {
    
-  const createdPublisher_history = await purchase_history.findOne(req.body, { raw: true, include: { model: book } });
-  res.json({ success: true, message: 'Purchase history created successfully', data: createdPublisher_history });
+  try{
+    let purchase_history = req.body;
+    const createdPurchase_history = await model.purchase_history.create(purchase_history);
+    console.log(createdPurchase_history);
+    res.json({ success: true, message: 'Purchase history created successfully', data:purchase_history }); 
+}
+  catch(err){
+  throw err;
+}
 };
-
+  
 
 const deletePurchase_history = async (req, res) =>{
-  
     const id = req.params.id;
-    const success = await purchase_history.destroy({
+    const success = await model.purchase_history.destroy({
       where: { id: id }
     })
 
@@ -27,10 +32,8 @@ const deletePurchase_history = async (req, res) =>{
 });
 }
 
-
-
 const getPurchase_history = async (req, res) =>{
-  const purchase_historyDetails = await purchase_history.findAll();
+  let purchase_historyDetails = await model.purchase_history.findAll();
     if(!purchase_historyDetails){
       return res.status(200).send({
       status: 404,

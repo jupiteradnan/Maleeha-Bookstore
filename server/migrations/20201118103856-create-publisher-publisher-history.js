@@ -1,22 +1,18 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Publisher_histories', {
+    await queryInterface.createTable('publisher_publisher_histories', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      
-      bookId: {
+      publisherId: {
         type: Sequelize.INTEGER
       },
-      NoOfBooksPurchased: {
+      publisher_historyId: {
         type: Sequelize.INTEGER
-      },
-      publishDate: {
-        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,
@@ -25,21 +21,10 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-      },
-      
-      publisher_historyId: {
-        type: Sequelize.INTEGER,
-        field: "publisher_history_id",
-        references: {
-          model: "publisher_history",
-          key: "id",
-        },
-        onUpdate: "CASCADE",
-        onDelete: "SET NULL",
-      },
+      }
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Publisher_histories');
+    await queryInterface.dropTable('publisher_publisher_histories');
   }
 };

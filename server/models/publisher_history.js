@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
   );
   Publisher_history.associate = (models) => {
     // associations can be defined here
-    Publisher_history.belongsTo(models.publisher, {foreignKey: "publisher_id"});
+    Publisher_history.belongsTo(models.publisher, {foreignKey: "publisherH_id"});
     Publisher_history.belongsTo(models.book, {foreignKey: "book_id"});
   };
   return Publisher_history;

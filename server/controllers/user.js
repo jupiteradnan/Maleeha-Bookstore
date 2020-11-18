@@ -54,9 +54,9 @@ const getUserDetails = async (req, res) =>{
 const login = async (req, res) => {
 try{
   
-  let email = req.params.email;
-  let password = req.params.password;
-  let user = model.user.findAll({
+  const email = req.params.email;
+  const password = req.params.password;
+  const user = model.user.findOne({
       
     where:{
         email: email,
@@ -67,23 +67,22 @@ try{
   if(!user){
     return res.status(200).send({
     status: 404,
-    message: 'Cannot login!'
-});
-}
+    message: 'Cannot login!'});
+                           
+          }
 
-   res.status(200).send({
-   status: 200,
-   message: 'User logged in successfully!',
-   data: getUserDetails()
-});
-
-} catch(err){
+  else{
+  res.status(200).send({
+     status: 200,
+     message: 'User logged in successfully!',
+   });
+  }
+  
+  }catch(err){
   throw err;
 }
  
 };
-
-
 
 const userController = {
   createUser,
