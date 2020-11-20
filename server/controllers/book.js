@@ -5,7 +5,7 @@ const createBook = async (req, res) => {
       let book = req.body;
       const createdBook = await model.book.create(book);
       console.log(createdBook)
-      res.json({ success: true, message: 'Book created successfully', data:book }); 
+      res.json({ success: true, message: 'Book created successfully', data:createdBook });
   }
     catch(err){
     throw err;
@@ -33,6 +33,7 @@ const createBook = async (req, res) => {
   
   
   const getBookDetails = async (req, res) =>{
+      // findAndCountAll
     let bookDetails = await model.book.findAll();
       if(!bookDetails){
         return res.status(200).send({
@@ -50,21 +51,22 @@ const createBook = async (req, res) => {
 
    const getBooksByUserId = async (req, res) =>{
    // const userId = req.params.id;
-    const books = await model.book.findAll({
-      where: { userId: 1 }
-    })
+    const foundUser = await model.user.findOne({ where: { id: req.params.id }});
+    const userBooks = await foundUser.getBooks();
 
-    console.log("output:"+books);
-    if(!books){
+
+    console.log("output:"+userBooks);
+    if(!userBooks){
       return res.status(200).send({
       status: 404,
       message: 'No data found'
  });
  }
     else {
-      res.status(200).send({
+     return res.status(200).send({
       status: 200,
       message: 'Data found!',
+         data: userBooks
         });
     }  
    

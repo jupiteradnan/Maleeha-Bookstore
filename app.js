@@ -16,13 +16,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 runMig();
 
+
  routes(app);
 
-app.get("*", (req, res) =>
-  res.status(200).send({
-    message: "Welcome to Bookstore.",
-  })
-);
+
 
 
 app.listen(port, hostname, () => {

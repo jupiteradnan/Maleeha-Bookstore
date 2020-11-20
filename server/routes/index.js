@@ -17,7 +17,7 @@
      app.post('/api/book', book.createBook);
      app.delete('/api/deleteBook/:id', book.deleteBook);
      app.get('/api/getBook', book.getBookDetails);
-     app.get('/api/getBooksByUserId', book.getBooksByUserId);
+     app.get('/api/getBooksByUserId/:id', book.getBooksByUserId);
      
       // Publisher APIs
      app.post('/api/publisher', publisher.createPublisher);
