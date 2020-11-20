@@ -11,8 +11,9 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true
 
       },
-      NoOfBooksPurchased: {
+      noOfBooksPurchased: {
         type: DataTypes.INTEGER,
+        field: 'no_of_books_purchased',
         allowNull: {
           args: false,
         },
@@ -25,12 +26,17 @@ module.exports = (sequelize, DataTypes) => {
       },
       purchaseDate: {
         type: DataTypes.DATE,
+        field: 'purchase_date',
         allowNull: {
           args: false,
         },
       }
     },
-    {}
+    {},
+    {
+      underscored: true,
+      paranoid: true,
+    }
   );
 
   Purchase_history.associate = (models) => {

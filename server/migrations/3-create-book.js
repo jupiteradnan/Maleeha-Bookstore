@@ -8,7 +8,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      
       title: {
         type: Sequelize.STRING
       },
@@ -24,25 +23,36 @@ module.exports = {
       pages: {
         type: Sequelize.INTEGER
       },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-
-      bookId: {
+      user_id: {
         type: Sequelize.INTEGER,
-        field: "book_id",
+      
         references: {
-          model: "book",
+          model: "users",
           key: "id",
         },
         onUpdate: "CASCADE",
         onDelete: "SET NULL",
       },
+    
+      publisher_id: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "publishers",
+          key: "id",
+        },
+        onUpdate: "CASCADE",
+        onDelete: "SET NULL",
+      },
+      created_at: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        //field: 'created_at'
+      },
+      updated_at: {
+        allowNull: false,
+        type: Sequelize.DATE,
+       // field: 'updated_at'
+      }
     });
   },
   down: async (queryInterface, Sequelize) => {

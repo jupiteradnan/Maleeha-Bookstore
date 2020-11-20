@@ -1,10 +1,10 @@
-const publisher_history = require("./publisher_history");
+const publisher = require("./publisher");
 
 module.exports = (sequelize, DataTypes) => {
-  const Publisher = sequelize.define("publisher",
+  const Publisher = sequelize.define(
+    "publisher",
     {
       id: {
-        
         type: DataTypes.INTEGER,
         allowNull: false,
         autoIncrement: true,
@@ -12,10 +12,12 @@ module.exports = (sequelize, DataTypes) => {
       },
       name: {
         type: DataTypes.STRING,
+       
         allowNull: {
           args: false,
         },
       },
+
       address: {
         type: DataTypes.STRING,
         allowNull: {
@@ -23,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       phone: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: {
           args: false,
         },
@@ -34,7 +36,6 @@ module.exports = (sequelize, DataTypes) => {
           args: false,
         },
       },
-
       website: {
         type: DataTypes.STRING,
         allowNull: {
@@ -42,12 +43,17 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
-    {}
+    {},
+    {
+      underscored: true,
+      paranoid: true,
+    }
   );
   Publisher.associate = (models) => {
     // associations can be defined here
     Publisher.hasMany(models.book,{foreignKey: "publisher_id"});
     Publisher.belongsToMany(models.publisher_history,{through: "publisher_publisher_history"});
+   
   };
   return Publisher;
 };

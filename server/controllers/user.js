@@ -5,8 +5,9 @@ const createUser = async (req, res) => {
   try{
     let user = req.body;
     const createdUser = await model.user.create(user);
-    console.log(createdUser)
+    //console.log(createdUser)
     res.json({ success: true, message: 'User created successfully', data:user }); 
+    return createUser;
 }
   catch(err){
   throw err;
@@ -84,11 +85,32 @@ try{
  
 };
 
+
+const myUser =  model.book.create({ name: "Sara",
+username: "Sara1",
+email: "sara@gmail.com",
+password: "test1",
+address: "abc" 
+});
+
+console.log(myUser.getBooks());
+console.log(myUser.countBooks());
+console.log(myUser.hasBooks(myUser));
+
+//console.log(myUser.setBooks());
+//console.log(myUser.addBooks());
+//console.log(myUser.removeBooks());
+
+
+
+
 const userController = {
   createUser,
   deleteUser,
   getUserDetails,
-  login
+  login,
+  
+
 };
 
 module.exports = userController;

@@ -8,20 +8,28 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      bookId: {
-        type: Sequelize.INTEGER
+     
+      bookshop_id: {
+        type: Sequelize.INTEGER,
+        field: "bookshop_id",
+        references: {
+          model: "bookshops",
+          key: "id",
+        },
+        onUpdate: "CASCADE",
+        onDelete: "SET NULL",
       },
-      bookshopId: {
-        type: Sequelize.INTEGER
+      created_at: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        
       },
-      createdAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
+
+
      
     });
   },

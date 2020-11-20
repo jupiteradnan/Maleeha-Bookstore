@@ -1,17 +1,18 @@
-
 module.exports = (sequelize, DataTypes) => {
   const Book_bookshop = sequelize.define(
     "book_bookshop",
     {
         bookId: {
         type: DataTypes.INTEGER,
+        field: 'book_id',
         allowNull: {
           args: false
         },
       },
 
-      bookShopId: {
+      bookshopId: {
         type: DataTypes.INTEGER,
+        field: 'bookshop_id',
         allowNull: {
           args: false
         },
@@ -26,3 +27,4 @@ module.exports = (sequelize, DataTypes) => {
   
   return Book_bookshop;
 };
+

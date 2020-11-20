@@ -1,4 +1,3 @@
-
 module.exports = (sequelize, DataTypes) => {
   const Book = sequelize.define(
     "book",
@@ -11,12 +10,13 @@ module.exports = (sequelize, DataTypes) => {
           
         },
       },
-      author: {
-        type: DataTypes.STRING,
-        allowNull: {
-          args: false
-          
-        },
+      createdAt: {
+        field: 'created_at',
+        type: DataTypes.DATE
+      },
+      updatedAt: {
+        field: 'updated_at',
+        type: DataTypes.DATE
       },
       category: {
         type: DataTypes.STRING,
@@ -38,11 +38,15 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
-    {}
+    {},
+    {
+      underscored: true,
+      paranoid: true,
+    }
   );
     Book.associate = (models) => {
     // associations can be defined here
-    Book.belongsTo(models.user, {foreignKey: "user_id"});
+    Book.belongsTo(models.user, {foreignKey: "user_id", as: 'author'});
     Book.belongsToMany(models.bookshop,{through: "book_bookshop"});
     
   };

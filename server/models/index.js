@@ -13,11 +13,11 @@ let db = {};
 const book = require("./book");
 const user = require("./user");
 const publisher = require("./publisher");
-const publisher_history = require("./publisher_history");
+const publish_history = require("./publish_history");
 const purchase_history = require("./purchase_history");
 const bookshop = require("./bookshop");
 const book_bookshop = require("./book_bookshop");
-const publisher_publisher_history = require("./publisher_publisher_history");
+const publisher_publish_history = require("./publisher_publish_history");
 
 
 let sequelize;
@@ -35,11 +35,11 @@ if (config.use_env_variable) {
 db.book  = book( sequelize, DataTypes) ;
 db.user = user( sequelize, DataTypes);
 db.publisher = publisher( sequelize, DataTypes);
-db.publisher_history = publisher_history( sequelize, DataTypes);
+db.publisher_history = publish_history( sequelize, DataTypes);
 db.purchase_history = purchase_history( sequelize, DataTypes);
 db.bookshop = bookshop( sequelize, DataTypes);
 db.book_bookshop = book_bookshop( sequelize, DataTypes);
-db.publisher_publisher_history = publisher_publisher_history( sequelize, DataTypes); 
+db.publisher_publish_history = publisher_publish_history( sequelize, DataTypes); 
 
 
 Object.keys(db).forEach((modelName) => {

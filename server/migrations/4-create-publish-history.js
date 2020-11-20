@@ -1,50 +1,53 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Purchase_histories', {
+    await queryInterface.createTable('Publish_histories', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      purchaserId: {
+      no_of_books_published: {
         type: Sequelize.INTEGER
       },
-      NoOfBooksPurchased: {
-        type: Sequelize.INTEGER
-      },
-      price: {
-        type: Sequelize.INTEGER
-      },
-      purchaseDate: {
+      publish_date: {
         type: Sequelize.DATE
       },
-      bookId: {
-        type: Sequelize.INTEGER
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-
-      purchaseId: {
+      
+      publisher_id: {
         type: Sequelize.INTEGER,
-        field: "purchase_id",
         references: {
-          model: "purchase_history",
+          model: "publishers",
           key: "id",
         },
         onUpdate: "CASCADE",
         onDelete: "SET NULL",
       },
+      created_at: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updated_at: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+
+      book_id: {
+        type: Sequelize.INTEGER,
+        field: "book_id",
+        references: {
+          model: "books",
+          key: "id",
+        },
+        onUpdate: "CASCADE",
+        onDelete: "SET NULL",
+      },
+
+     
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Purchase_histories');
+    await queryInterface.dropTable('Publish_histories');
   }
 };

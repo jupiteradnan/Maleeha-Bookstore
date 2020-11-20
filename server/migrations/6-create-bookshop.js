@@ -8,36 +8,34 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      shopName: {
+      name: {
         type: Sequelize.STRING
       },
-      phone: {
-        type: Sequelize.STRING
-      },
+      
       address: {
         type: Sequelize.STRING
       },
-      bookId: {
-        type: Sequelize.INTEGER
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
 
-      shopId: {
+      phone: {
+        type: Sequelize.STRING
+      },
+      book_id: {
         type: Sequelize.INTEGER,
-        field: "shop_id",
+        field: "book_id",
         references: {
-          model: "bookshop",
+          model: "books",
           key: "id",
         },
         onUpdate: "CASCADE",
         onDelete: "SET NULL",
+      },
+      created_at: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updated_at: {
+        allowNull: false,
+        type: Sequelize.DATE
       },
     });
   },

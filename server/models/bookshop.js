@@ -21,13 +21,27 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       phone: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: {
           args: false
         },
-      }
+      },
+
+      bookId: {
+        type: DataTypes.INTEGER,
+        field: 'book_id',
+        references: {
+          model: "Bookshops",
+          key: "id",
+          //as: "author",
+        },
+      },
     },
-    {}
+    {},
+    {
+      underscored: true,
+      paranoid: true,
+    }
   );
   Bookshop.associate = (models) => {
     // associations can be defined here

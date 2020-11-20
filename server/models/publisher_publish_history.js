@@ -1,17 +1,19 @@
 
 module.exports = (sequelize, DataTypes) => {
-  const Publisher_publisher_history = sequelize.define(
+  const Publisher_publish_history = sequelize.define(
     "publisher_publisher_history",
     {
         publisherId: {
         type: DataTypes.INTEGER,
+        field: 'publisher_id',
         allowNull: {
           args: false
         },
       },
 
-      publisher_historyId: {
+      publishHistoryId: {
         type: DataTypes.INTEGER,
+        field: 'publish_history_id',
         allowNull: {
           args: false
         },
@@ -24,5 +26,5 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   
-  return Publisher_publisher_history;
+  return Publisher_publish_history;
 };

@@ -5,7 +5,7 @@ const model = require('../models');
 const createPublisher_history = async (req, res) => {
   try{
     let publisher_history = req.body;
-    const createdPublisher_history = await model.publisher_history.create(publisher_history);
+    const createdPublisher_history = await model.publish_history.create(publisher_history);
     console.log(createdPublisher_history);
     res.json({ success: true, message: 'Publisher history created successfully', data:publisher_history }); 
 }
@@ -18,7 +18,7 @@ const createPublisher_history = async (req, res) => {
 const deletePublisher_history = async (req, res) =>{
   
     const id = req.params.id;
-    const success = await model.publisher_history.destroy({
+    const success = await model.publish_history.destroy({
       where: { id: id }
     })
 
@@ -30,12 +30,12 @@ const deletePublisher_history = async (req, res) =>{
 }
   res.status(200).send({
      status: 200,
-     message: 'Publisher history has been deleted successfully!'
+     message: 'Publish history has been deleted successfully!'
 });
 }
 
 const getPublisher_history = async (req, res) =>{
-  try{ let publisher_historyDetails = await model.publisher_history.findAll();
+  try{ let publisher_historyDetails = await model.publish_history.findAll();
     if(!publisher_historyDetails){
       return res.status(200).send({
       status: 404,
@@ -54,13 +54,13 @@ const getPublisher_history = async (req, res) =>{
 
  const getPublishHistoryByBookId = async (req, res) =>
  {
-    const bookId = req.params.id;
-    const publish_history = await model.publisher_history.findAll({
+    //const bookId = req.params.id;
+    const publish_history = await model.publish_history.findAll({
      // where: { bookId: bookId }
       where: { bookId: 1 }
     })
 
-    console.log("output:"+publish_history);
+    console.log(publish_history);
     if(!publish_history){
       return res.status(200).send({
       status: 404,

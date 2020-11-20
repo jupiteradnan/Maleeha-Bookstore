@@ -1,4 +1,4 @@
- const { user, book, publisher, publisher_history, purchase_history, bookshop} = require('../controllers');
+ const { user, book, publisher, publish_history, purchase_history, bookshop} = require('../controllers');
 
  
  module.exports = (app) => {
@@ -25,10 +25,10 @@
      app.get('/api/getPublisher', publisher.getPublisherDetails);
 
      // Publisher history APIs
-     app.post('/api/publisherHistory', publisher_history.createPublisher_history);
-     app.delete('/api/deletePublisherhistory/:id', publisher_history.deletePublisher_history);
-     app.get('/api/getPublisherHistory', publisher_history.getPublisher_history);
-     app.get('/api/getPublishHistoryByBookId/id', publisher_history.getPublishHistoryByBookId);
+     app.post('/api/publisherHistory', publish_history.createPublisher_history);
+     app.delete('/api/deletePublisherhistory/:id', publish_history.deletePublisher_history);
+     app.get('/api/getPublisherHistory', publish_history.getPublisher_history);
+     app.get('/api/getPublishHistoryByBookId/:id', publish_history.getPublishHistoryByBookId);
 
    // Purchase history APIs
      app.post('/api/purchaseHistory', purchase_history.createPurchase_history);
