@@ -72,12 +72,34 @@ const createBook = async (req, res) => {
    
   }
 
+  const getCount = async (req, res) =>{
+    let { page, limit } = req.query;
+    console.log('---> page', page,'---> limit',  limit);
+    let offset = limit*(page-1);
+    offset = parseInt(offset);
+    limit = parseInt(limit);
+    const userId = req.params.id;
+  let result = await model.book.findAndCountAll({
+    where: {
+     user_id: userId
+ },
+ offset: offset,
+ limit: limit
+    
+})
+
+res.json(result)
+
+
+ }  
+
 const bookController = {
 
   createBook,
   deleteBook,
   getBookDetails,
-  getBooksByUserId
+  getBooksByUserId,
+  getCount
 };
 
 module.exports = bookController; 

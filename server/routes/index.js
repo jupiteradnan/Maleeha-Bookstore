@@ -18,16 +18,18 @@
      app.delete('/api/deleteBook/:id', book.deleteBook);
      app.get('/api/getBook', book.getBookDetails);
      app.get('/api/getBooksByUserId/:id', book.getBooksByUserId);
+     app.get('/api/Book/getCount/:id', book.getCount);
+
      
       // Publisher APIs
      app.post('/api/publisher', publisher.createPublisher);
      app.delete('/api/deletePublisher/:id', publisher.deletePublisher);
      app.get('/api/getPublisher', publisher.getPublisherDetails);
 
-     // Publisher history APIs
-     app.post('/api/publisherHistory', publish_history.createPublisher_history);
-     app.delete('/api/deletePublisherhistory/:id', publish_history.deletePublisher_history);
-     app.get('/api/getPublisherHistory', publish_history.getPublisher_history);
+     // Publish history APIs
+     app.post('/api/publishHistory', publish_history.createPublisher_history);
+     app.delete('/api/deletePublishhistory/:id', publish_history.deletePublisher_history);
+     app.get('/api/getPublishHistory', publish_history.getPublisher_history);
      app.get('/api/getPublishHistoryByBookId/:id', publish_history.getPublishHistoryByBookId);
 
    // Purchase history APIs

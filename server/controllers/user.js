@@ -85,15 +85,6 @@ try{
  
 };
 
-
-
-//console.log(myUser.setBooks());
-//console.log(myUser.addBooks());
-//console.log(myUser.removeBooks());
-
-
-
-
 const userController = {
   createUser,
   deleteUser,
