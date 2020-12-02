@@ -9,7 +9,8 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       no_of_books_published: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       publish_date: {
         type: Sequelize.DATE

@@ -1,63 +1,67 @@
 const model = require('../models');
 
-const createUser = async (req, res) => {
-// req.body, req.header, req.query, req.params
-  try{
+  const createUser = async (req, res) => {
+    try{
     let user = req.body;
     const createdUser = await model.user.create(user);
     console.log('just testing it out -----------------------------', await createdUser.getBooks());
-    res.json({ success: true, message: 'User created successfully', data:user }); 
+    res.json({ success: true, message: 'User created successfully', data:createdUser });
     return createUser;
 }
+
   catch(err){
   throw err;
 }
 }; 
 
 
-const deleteUser = async (req, res) =>{
-  
-  const id = req.params.id;
-  const success = await model.user.destroy({
-  where: { id: id }
+const deleteUser = async (req, res) => {
+
+    const id = req.params.id;
+    const success = await model.user.destroy({
+        where: {id: id}
     })
 
-  if(!success){
-   return res.status(200).send({
-     status: 404,
-     message: 'No data found'
-});
-}
-  res.status(200).send({
-     status: 200,
-     message: 'User has been deleted successfully!'
-});
+    if (!success) {
+        return res.status(200).send({
+            status: 404,
+            message: 'No data found'
+        });
+
+    } else {
+
+        return res.status(200).send({
+        status: 200,
+        message: 'User has been deleted successfully!' });
+
+          }
 }
 
 
-const getUserDetails = async (req, res) =>{
-  let userDetails = await model.user.findAll();
-    if(!userDetails){
+const listAllUsers = async (req, res) =>{
+  let users = await model.user.findAll();
+    if(!users){
       return res.status(200).send({
       status: 404,
-      message: 'No data found'
- });
+      message: 'No data found' });
+
  
   }
-      return res.status(200).send({
-      status: 200,
-      message: 'Data found!',
-      data: userDetails
- });
+     else{
+         return res.status(200).send({
+            status: 200,
+            message: 'Data found!',
+            data: users });
+     }
  
  }
 
 const login = async (req, res) => {
 try{
   
-  const email = req.params.email;
-  const password = req.params.password;
-  const user = model.user.findOne({
+  const email = req.body.email;
+  const password = req.body.password;
+  const user = await model.user.findOne({
       
     where:{
         email: email,
@@ -73,7 +77,7 @@ try{
           }
 
   else{
-  res.status(200).send({
+     res.status(200).send({
      status: 200,
      message: 'User logged in successfully!',
    });
@@ -88,8 +92,8 @@ try{
 const userController = {
   createUser,
   deleteUser,
-  getUserDetails,
-  login,
+    listAllUsers,
+  login
   
 
 };

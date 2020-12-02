@@ -52,7 +52,7 @@ module.exports = (sequelize, DataTypes) => {
   Publisher.associate = (models) => {
     // associations can be defined here
     Publisher.hasMany(models.book,{foreignKey: "publisher_id"});
-    Publisher.belongsToMany(models.publisher_history,{through: "publisher_publisher_history"});
+    Publisher.belongsToMany(models.publish_history,{through: "publisher_publisher_history"});
    
   };
   return Publisher;

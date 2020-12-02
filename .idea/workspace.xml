@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ef4f42a1-2037-40fd-864d-8eaa97f72c1c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/initialize.js" beforeDir="false" afterPath="$PROJECT_DIR$/initialize.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/book.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/book.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/bookshop.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/bookshop.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/publish_history.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/publish_history.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/publisher.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/publisher.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/purchase_history.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/purchase_history.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/migrations/4-create-publish-history.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/migrations/4-create-publish-history.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/publish_history.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/publish_history.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/publisher.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/publisher.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/publisher_publish_history.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/publisher_publish_history.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/models/purchase_history.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/purchase_history.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/index.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1kota7p4vPosyCkd5uPCIkjor2g" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ef4f42a1-2037-40fd-864d-8eaa97f72c1c" name="Default Changelist" comment="" />
+      <created>1606378832627</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1606378832627</updated>
+      <workItem from="1606378834760" duration="12659000" />
+      <workItem from="1606458213976" duration="11380000" />
+      <workItem from="1606477202552" duration="23000" />
+      <workItem from="1606892214366" duration="36000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1606477215223">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1606477215223" />
+  </component>
+</project>

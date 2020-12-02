@@ -1,5 +1,6 @@
  const { user, book, publisher, publish_history, purchase_history, bookshop} = require('../controllers');
-
+ const { check, validationResult } = require('express-validator');
+ const {validate} = require('../custom/validator');
  
  module.exports = (app) => {
 
@@ -7,39 +8,67 @@
        message: 'Welcome to the BookStore API!',
      }));
      
-     // User APIs
-     app.post('/api/register', user.createUser); 
-     app.get('/api/login', user.login);
-     app.delete('/api/delete/:id', user.deleteUser);
-     app.get('/api/getUser', user.getUserDetails);
+     // User APIs 
+    
+    app.post(
+      '/api/user/register',
+      [
+          check('email').isEmail(),
+          check('password').isLength({ min: 5 }),
+      ],
+      validate,
+      user.createUser);
+    
+     app.post('/api/user/login', user.login);
+     app.delete('/api/user/delete/:id', user.deleteUser);
+     app.get('/api/user/listUsers', user.listAllUsers);
      
       // Book APIs
-     app.post('/api/book', book.createBook);
-     app.delete('/api/deleteBook/:id', book.deleteBook);
-     app.get('/api/getBook', book.getBookDetails);
-     app.get('/api/getBooksByUserId/:id', book.getBooksByUserId);
-     app.get('/api/Book/getCount/:id', book.getCount);
+     app.post(
+      '/api/book/create',
+      [
+          check('title').exists(),
+      ],
+      validate,
+      book.createBook);
+
+     app.delete('/api/book/delete/:id', book.deleteBook);
+     app.get('/api/book/listBooks', book.listAllBooks);
+     app.get('/api/book/getBooksByUserId/:id', book.getBooksByUserId);
+     app.get('/api/book/getCount/:id', book.getCount);
 
      
       // Publisher APIs
-     app.post('/api/publisher', publisher.createPublisher);
-     app.delete('/api/deletePublisher/:id', publisher.deletePublisher);
-     app.get('/api/getPublisher', publisher.getPublisherDetails);
+     app.post(
+      '/api/publisher/create',
+      [
+         check('name').exists(),
+       ],
+         validate,
+      publisher.createPublisher);
+     app.delete('/api/publisher/delete/:id', publisher.deletePublisher);
+     app.get('/api/publisher/listPublishers', publisher.listAllPublishers);
 
      // Publish history APIs
-     app.post('/api/publishHistory', publish_history.createPublisher_history);
-     app.delete('/api/deletePublishhistory/:id', publish_history.deletePublisher_history);
-     app.get('/api/getPublishHistory', publish_history.getPublisher_history);
-     app.get('/api/getPublishHistoryByBookId/:id', publish_history.getPublishHistoryByBookId);
+     app.post('/api/publishHistory/create', publish_history.createPublishHistory);
+     app.delete('/api/PublishHistory/delete/:id', publish_history.deletePublishHistory);
+     app.get('/api/PublishHistory/listPublishHistory', publish_history.listPublishHistory);
+     app.get('/api/PublishHistory/getPublishHistoryByBookId/:id', publish_history.getPublishHistoryByBookId);
 
    // Purchase history APIs
-     app.post('/api/purchaseHistory', purchase_history.createPurchase_history);
-     app.delete('/api/deletePurchaseHistory/:id', purchase_history.deletePurchase_history);
-     app.get('/api/getPurchaseHistory', purchase_history.getPurchase_history);
+     app.post('/api/purchaseHistory/create', purchase_history.createPurchaseHistory);
+     app.delete('/api/PurchaseHistory/delete/:id', purchase_history.deletePurchaseHistory);
+     app.get('/api/purchaseHistory/getPurchaseHistory', purchase_history.listPurchaseHistory);
 
      //Bookshop APIs
-     app.post('/api/bookshop', bookshop.createBookshop);
-     app.delete('/api/deleteBookshop/:id', bookshop.deleteBookshop);
-     app.get('/api/getBookshop', bookshop.getBookshopDetails);
+     app.post(
+         '/api/bookshop/create',
+         [
+             check('name').exists(),
+         ],
+         validate,
+         bookshop.createBookshop);
+     app.delete('/api/bookshop/delete/:id', bookshop.deleteBookshop);
+     app.get('/api/bookshop/listBookshops', bookshop.listAllBookshops);
  };
 

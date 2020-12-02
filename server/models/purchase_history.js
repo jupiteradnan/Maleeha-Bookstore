@@ -1,5 +1,3 @@
-const publisher = require("./publisher");
-
 module.exports = (sequelize, DataTypes) => {
   const Purchase_history = sequelize.define(
     "purchase_history",

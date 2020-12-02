@@ -32,64 +32,72 @@ const createBook = async (req, res) => {
   }
   
   
-  const getBookDetails = async (req, res) =>{
+  const listAllBooks = async (req, res) =>{
       // findAndCountAll
-    let bookDetails = await model.book.findAll();
-      if(!bookDetails){
+    let books = await model.book.findAll();
+      if(!books){
         return res.status(200).send({
         status: 404,
         message: 'No data found'
    });
    }
-        res.status(200).send({
-        status: 200,
-        message: 'Data found!',
-        data: bookDetails
-   });
+      else {
+          res.status(200).send({
+              status: 200,
+              message: 'Data found!',
+              data: books
+          });
+      }
    
    }
 
    const getBooksByUserId = async (req, res) =>{
    // const userId = req.params.id;
-    const foundUser = await model.user.findOne({ where: { id: req.params.id }});
-    const userBooks = await foundUser.getBooks();
-
-
-    console.log("output:"+userBooks);
-    if(!userBooks){
-      return res.status(200).send({
-      status: 404,
-      message: 'No data found'
- });
- }
-    else {
-     return res.status(200).send({
-      status: 200,
-      message: 'Data found!',
-         data: userBooks
-        });
-    }  
-   
+   try {
+       const foundUser = await model.user.findOne({
+           where: {
+               id: req.params.id
+           }
+       });
+       let userBooks = await foundUser.getBooks()
+       console.log("output..........................................................:"+userBooks)
+       if (!userBooks) {
+           return res.status(200).send({
+               status: 404,
+               message: 'No data found'
+           });
+       } else {
+           return res.status(200).send({
+               status: 200,
+               message: 'Data found!',
+               data: userBooks
+           });
+       }
+   }catch(err)
+   {
+       throw err
+   }
   }
 
+  // get count of books by user id
   const getCount = async (req, res) =>{
     let { page, limit } = req.query;
     console.log('---> page', page,'---> limit',  limit);
-    let offset = limit*(page-1);
+    let offset = limit * (page-1);
     offset = parseInt(offset);
     limit = parseInt(limit);
     const userId = req.params.id;
-  let result = await model.book.findAndCountAll({
-    where: {
+
+    let result = await model.book.findAndCountAll({
+     where: {
      user_id: userId
  },
  offset: offset,
  limit: limit
     
-})
+     })
 
 res.json(result)
-
 
  }  
 
@@ -97,7 +105,7 @@ const bookController = {
 
   createBook,
   deleteBook,
-  getBookDetails,
+  listAllBooks,
   getBooksByUserId,
   getCount
 };

@@ -1,4 +1,3 @@
-
 module.exports = (sequelize, DataTypes) => {
   const Publisher_publish_history = sequelize.define(
     "publisher_publisher_history",
