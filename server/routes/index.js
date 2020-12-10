@@ -1,7 +1,8 @@
  const { user, book, publisher, publish_history, purchase_history, bookshop} = require('../controllers');
  const { check, validationResult } = require('express-validator');
  const {validate} = require('../custom/validator');
- 
+ const { verifyRegister,authJwt} = require("../middleware");
+
  module.exports = (app) => {
 
      app.get('/api', (req, res) => res.status(200).send({
@@ -10,18 +11,19 @@
      
      // User APIs 
     
-    app.post(
+    /*app.post(
       '/api/user/register',
       [
           check('email').isEmail(),
           check('password').isLength({ min: 5 }),
       ],
       validate,
-      user.createUser);
-    
+      user.createUser);  */
+
+      app.post("/api/auth/register", [verifyRegister.checkDuplicateUsernameOrEmail],user.createUser);
      app.post('/api/user/login', user.login);
-     app.delete('/api/user/delete/:id', user.deleteUser);
-     app.get('/api/user/listUsers', user.listAllUsers);
+     app.delete('/api/user/delete/:id', authJwt.verifyToken, user.deleteUser);
+     app.get('/api/user/listUsers',authJwt.verifyToken, user.listAllUsers);
      
       // Book APIs
      app.post(
